@@ -90,12 +90,49 @@ class BinarySearchTree {
 
         return find_node(this.root, val) ? true : false;
     }
+    // Find the node with the minimum value in the BST
+    findMinNode(node) {
+        while (node.left) {
+            node = node.left;
+        }
+        return node;
+    }
+
+    // Delete a node with a given value from the BST
+    delete(value) {
+        const deleteNode = (node, value) => {
+            if (!node) return null;
+            if (value === node.value) {
+                // Case 1: The node has no children
+                if (!node.left && !node.right) return null;
+                // Case 2: The node has one child
+                if (!node.left) return node.right;
+                if (!node.right) return node.left;
+                // Case 3: The node has two children
+                const tempNode = this.findMinNode(node.right);
+                node.value = tempNode.value;
+                node.right = deleteNode(node.right, tempNode.value);
+            } 
+            else if (value < node.value) {
+                node.left = deleteNode(node.left, value);
+            } 
+            else {
+                node.right = deleteNode(node.right, value);
+            }
+            return node;
+        };
+        this.root = deleteNode(this.root, value);
+        return this;
+  }
 }
 
 let tree = new BinarySearchTree();
 tree.insert(8)
 tree.insert(7)
 tree.insert(10)
-tree.insert(10)
+tree.insert(9)
+tree.insert(11)
+tree.insert(12)
 console.log(tree.find(7))
+tree.delete(10)
 console.log(tree)

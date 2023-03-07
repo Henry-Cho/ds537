@@ -8,6 +8,32 @@
 // piece of data - val
 //reference to next node - next
 
+// Big O
+
+// Read (Access): O(n)
+// In the worst case, we need to traverse the entire list to find the desired node.
+
+// Insertion at the head (Prepend): O(1)
+// We simply create a new node and update the head pointer to point to the new node, so it takes constant time.
+
+// Insertion at the tail (Append): O(n)
+// In the worst case, we need to traverse the entire list to find the last node and append the new node.
+
+// Insertion at a specific position (Insert): O(n)
+// In the worst case, we need to traverse the entire list to find the desired position.
+
+// Deletion at the head: O(1)
+// We simply update the head pointer to point to the next node, so it takes constant time.
+
+// Deletion at the tail: O(n)
+// In the worst case, we need to traverse the entire list to find the second-to-last node and update its next pointer to null.
+
+// Deletion at a specific position: O(n)
+// In the worst case, we need to traverse the entire list to find the desired position.
+
+// Search: O(n)
+// In the worst case, we need to traverse the entire list to find the desired node.
+
 class Node{
     constructor(val){
         this.val = val;
@@ -178,6 +204,19 @@ class SinglyLinkedList{
     }
 
     reverse() {
+        // if (list.next) {
+        //     // save the head
+        //     // remove the next
+        //     // appendn the head onto the reversed list
+
+        //     let head = list;
+        //     let rev = this.reverse(list.next);
+        //     return appendFile(rev, head);
+        // }
+        // else {
+        //     return list
+        // }
+
         let currentHead = this.head;
         this.head = this.tail;
         this.tail = currentHead;
@@ -191,6 +230,25 @@ class SinglyLinkedList{
             currentHead = next;
         }
         return this; 
+    }
+
+    getLastItem() {
+        let currentHead = this.head;
+
+        while (currentHead.next) {
+            currentHead = currentHead.next;
+        }
+        console.log(currentHead)
+        return currentHead;
+    }
+
+    deleteMiddleNode(node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
+        node.next.next = null;
+
+        console.log(this);
+        return this;
     }
 }
 
@@ -215,3 +273,4 @@ list.insert(2, 5000)
 list.get(2)
 list.remove(1)
 list.remove(1)
+list.getLastItem()

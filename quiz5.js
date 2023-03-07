@@ -35,6 +35,7 @@ wordMap.set(word, (wordMap.get(word) || 0) + 1);
 const sortedByValues = insertionSort([...wordMap.entries()]);
 
 console.log(sortedByValues.length);
+console.log(wordMap.size)
 
 function test(inData) {
     for (let i = 0; i < inData.length - 1; i++) {

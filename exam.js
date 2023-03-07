@@ -91,4 +91,4 @@ sortedByValues.forEach((list) => {
     ht.insert(list[0], list[1]);
 })
 
-console.log(ht.get("tree"));
+console.log(ht.get("it"));

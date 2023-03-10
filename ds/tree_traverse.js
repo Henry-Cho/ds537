@@ -105,6 +105,9 @@ class BinarySearchTree {
             return node;
         };
         this.root = deleteNode(this.root, value);
+
+        //this.rebalance(this.root);
+
         return this;
   }
 
@@ -229,7 +232,49 @@ class BinarySearchTree {
     return data;
   }
 
+rebalance(node) {
+    if (!node) return;
+    let leftHeight = this.height(node.left);
+    let rightHeight = this.height(node.right);
+    if (Math.abs(leftHeight - rightHeight) > 1) {
+        if (leftHeight > rightHeight) {
+            let leftLeftHeight = this.height(node.left.left);
+            let leftRightHeight = this.height(node.left.right);
+            if (leftRightHeight > leftLeftHeight) {
+                node.left = this.rotateLeft(node.left);
+            }
+            node = this.rotateRight(node);
+        } else {
+            let rightLeftHeight = this.height(node.right.left);
+            let rightRightHeight = this.height(node.right.right);
+            if (rightLeftHeight > rightRightHeight) {
+                node.right = this.rotateRight(node.right);
+            }
+            node = this.rotateLeft(node);
+        }
+    }
+    this.rebalance(node.left);
+    this.rebalance(node.right);
+}
 
+rotateLeft(node) {
+    let newRoot = node.right;
+    node.right = newRoot.left;
+    newRoot.left = node;
+    return newRoot;
+}
+
+rotateRight(node) {
+    let newRoot = node.left;
+    node.left = newRoot.right;
+    newRoot.right = node;
+    return newRoot;
+}
+
+height(node) {
+    if (!node) return -1;
+    return 1 + Math.max(this.height(node.left), this.height(node.right));
+}
 
 }
 

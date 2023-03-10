@@ -20,7 +20,7 @@
 // Every parent node has at most two children
 // every node to the left of a parent node is always less than the parent
 // every node to the right of a parent node is alwyas greater than the parent
-
+// tree is a recursive data structure
 
 // Big O of BST
 
@@ -35,6 +35,9 @@
 // Average case: O(log n) - Occurs when the tree is balanced, and nodes are inserted in a random order. The average case time complexity for searching is proportional to the height of the tree, which is logarithmic in the number of nodes.
 // Worst case: O(n) - Occurs when nodes are inserted in a sorted order, or in a way that causes the tree to become unbalanced. In the worst case, the tree can become a linked list, with each node having only one child. In this case, the time complexity for searching is proportional to the number of nodes, as each node must be visited before reaching the target node.
 
+// how can I make a balanced tree / rebalance a tree? -> probably on quiz or exam..?? *********
+// how can I make a BST with a linkedlist?
+// rebalance along with insertion & deletion through rotating
 
 class Node {
     constructor(value) {
@@ -80,12 +83,13 @@ class BinarySearchTree {
             if (root.value === value) {
                 return root;
             } 
-            if (root.value < val) {
-                return find_node(root.right, value);
-            }
-            else {
-                return find_node(root.left, value);
-            }
+            // if (root.value < val) {
+            //     return find_node(root.right, value);
+            // }
+            // else {
+            //     return find_node(root.left, value);
+            // }
+            return root.value < value ? find_node(root.right, value) : find_node(root.left, value);
         }
 
         return find_node(this.root, val) ? true : false;

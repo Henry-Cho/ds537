@@ -52,6 +52,8 @@ class BinarySearchTree {
 
         this.root = findRightPosition(this.root, newNode);
 
+        //this.rebalance(this.root);
+
         console.log(this);
         return this;
     }

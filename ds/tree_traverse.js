@@ -287,6 +287,10 @@ tree.insert(3);
 tree.insert(8);
 tree.insert(20);
 console.log(tree.bfs())
+// [ 10, 6, 15, 3, 8, 20 ]
 console.log(tree.preorder())
+// [ 10, 6, 3, 8, 15, 20 ]
 console.log(tree.postorder())
+// [ 3, 8, 6, 20, 15, 10 ]
 console.log(tree.inorder())
+// [ 3, 6, 8, 10, 15, 20 ]

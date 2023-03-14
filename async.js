@@ -10,7 +10,7 @@ function deliver() {
 
 function getOrder() {
     setTimeout(function() {
-        print("Just got order!");
+        print("Just got your order!");
     }, 1000)
 }
 
@@ -37,7 +37,7 @@ function deliver_promise() {
 
 function getOrder_promise() {
     return new Promise(function(resolve, reject) {
-        resolve(print("Just got order!"));
+        resolve(print("Just got your order!"));
     });
 }
 

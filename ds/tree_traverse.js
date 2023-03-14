@@ -83,6 +83,48 @@ class BinarySearchTree {
         return node;
     }
 
+    delete_class(value, node) {
+        if (!node) return null;
+
+        if (value < node.value) {
+            node.left = this.delete_class(value, node.left);
+
+            return node;
+        }
+
+        if (value > node.value) {
+            node.right = this.delete_class(value, node.right);
+
+            return node;
+        }
+
+        if (!node.left) {
+            return node.right;
+        }
+
+        else if (!node.right) {
+            return node.left;
+        }
+
+        else {
+            node.right = this.lift(node.right, node);
+
+            return node;
+        }
+
+    }
+
+    lift(node, nodeToDelete) {
+        if (node.left) {
+            node.left = this.lift(node.left, nodeToDelete);
+            return node;
+        }
+
+        nodeToDelete.value = node.value;
+
+        return node.right;
+    }
+
     // Delete a node with a given value from the BST
     delete(value) {
         const deleteNode = (node, value) => {

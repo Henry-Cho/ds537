@@ -17,7 +17,7 @@ function getOrder() {
 function notifyDeliveryDepart() {
     setTimeout(function() {
         print("Your pizza is on its way!");
-    }, 1000)
+    }, 3000)
 }
 
 function pizza_delivery() {
@@ -51,21 +51,21 @@ function notifyDeliveryDepart_promise() {
         setTimeout(function() {
             print("Your pizza is on its way!");
             resolve();
-        }, 1000)
+        }, 3000)
     });
 }
 
 function pizza_delivery_promise() {
     getOrder_promise()
     .then(() => {
-        notifyDeliveryDepart_promise();
+        return notifyDeliveryDepart_promise();
     })
     .then(() => {
-        deliver_promise();
+        return deliver_promise();
     })
 }
 
-//pizza_delivery_promise()
+pizza_delivery_promise()
 
 async function pizza_delivery_async() {
     await getOrder_promise();

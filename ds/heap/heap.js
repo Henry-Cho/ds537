@@ -26,9 +26,11 @@
 
 
 // Big O of Binary Heaps
-// insertion - O (log n)
-// deletion - O (log n)
+// insertion - O (log n) -> always insert from the last
+// deletion - O (log n) -> always delete from the first
 // search - O (n)
+
+// heap sort?
 
 // Useful data structures for sorting, and implementing other data structures like priority queue
 

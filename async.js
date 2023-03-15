@@ -1,3 +1,5 @@
+// CCallbacks are one of the patterns used in JavaScript for asynchronous processing!
+
 function print(str) {
     console.log(str)
 }
@@ -25,6 +27,9 @@ function pizza_delivery() {
     notifyDeliveryDepart();
     deliver();
 }
+
+// traditional callback pattern can easily lead to a problem known as "callback hell," 
+// which involves excessive nesting.
 
 //pizza_delivery()
 
@@ -55,6 +60,14 @@ function notifyDeliveryDepart_promise() {
     });
 }
 
+// Promise is an object used to know the result after an asynchronous operation has completed!
+// By using Promises, you can return values from asynchronous methods as if they were synchronous methods.
+// It is another asynchronous processing pattern introduced in ES6 due to the callback hell caused by the traditional callback pattern.
+// It allows you to express the timing of asynchronous processing more clearly!
+
+// Promises allow you to chain subsequent processing methods, 
+// enabling you to connect multiple promises together! (This can help you solve callback hell!)
+
 function pizza_delivery_promise() {
     getOrder_promise()
     .then(() => {
@@ -67,10 +80,17 @@ function pizza_delivery_promise() {
 
 pizza_delivery_promise()
 
+// modern javascript makes it much easier!
+// async & await
+// async always returns promise
 async function pizza_delivery_async() {
     await getOrder_promise();
     await notifyDeliveryDepart_promise();
     await deliver_promise();
 }
+
+// When encountering an 'await', the execution is temporarily paused, and
+// then it resumes after the Promise has been processed!
+// In other words, using 'await' makes the function wait for its execution.
 
 pizza_delivery_async();

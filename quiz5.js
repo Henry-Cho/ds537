@@ -34,22 +34,4 @@ wordMap.set(word, (wordMap.get(word) || 0) + 1);
 
 const sortedByValues = insertionSort([...wordMap.entries()]);
 
-console.log(sortedByValues.length);
-console.log(wordMap.size)
-
-function test(inData) {
-    for (let i = 0; i < inData.length - 1; i++) {
-        let lni = i;
-
-        for (let j = i + 1; j < inData.length; j++) {
-            if (inData[j] < inData[i]) {
-                lni = j;
-            }
-        }
-
-        if (lni !== i) {
-            [inData[i], inData[lni]] = [inData[lni], inData[i]];
-        }
-    }
-    return inData;
-}
+console.log(sortedByValues);

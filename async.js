@@ -1,8 +1,12 @@
-// CCallbacks are one of the patterns used in JavaScript for asynchronous processing!
+// Callbacks are one of the patterns used in JavaScript for asynchronous processing!
+// Callback functions are functions that are passed 
+// as arguments to other functions and are executed at a later time or upon a specific event.
 
 function print(str) {
     console.log(str)
 }
+
+// examples of callback function
 
 function deliver() {
     setTimeout(function() {
@@ -33,6 +37,11 @@ function pizza_delivery() {
 
 //pizza_delivery()
 
+// Promise
+
+// Promise is an object used to know the result of an asynchronous operation
+// By using Promises, you can return values from asynchronous methods as if they were synchronous methods.
+
 function deliver_promise() {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
@@ -60,13 +69,10 @@ function notifyDeliveryDepart_promise() {
     });
 }
 
-// Promise is an object used to know the result after an asynchronous operation has completed!
-// By using Promises, you can return values from asynchronous methods as if they were synchronous methods.
-// It is another asynchronous processing pattern introduced in ES6 due to the callback hell caused by the traditional callback pattern.
-// It allows you to express the timing of asynchronous processing more clearly!
-
+// It is another asynchronous processing pattern introduced in modern javascript.
 // Promises allow you to chain subsequent processing methods, 
-// enabling you to connect multiple promises together! (This can help you solve callback hell!)
+// enabling you to connect multiple promises together! 
+// This can help you solve callback hell!
 
 function pizza_delivery_promise() {
     getOrder_promise()
@@ -78,7 +84,7 @@ function pizza_delivery_promise() {
     })
 }
 
-pizza_delivery_promise()
+//pizza_delivery_promise()
 
 // modern javascript makes it much easier!
 // async & await

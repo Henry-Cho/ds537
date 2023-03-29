@@ -10,6 +10,7 @@
 class TrieNode {
     constructor() {
         this.children = {};
+        this.isEndOfWord = false;
     }
 }
 
@@ -20,6 +21,7 @@ class Trie {
 
     // Most references have decided to call this O(K), where K is the number of characters in our search string. Any letter other than N would have worked here, but K it is.
     // With an O(K) algorithm, though, our trie can grow tremendously, but that will have no affect on the speed of our search.
+    // It is not constant!
 
     search(word) {
         let currentNode = this.root;
@@ -34,6 +36,53 @@ class Trie {
         }
 
         return currentNode;
+    }
+
+    search_inclass(word) {
+        let i = 0;
+        let currentNode = this.root;
+
+        while (i < word.length) {
+            const char = word[i];
+
+            if (!currentNode.children[char]) {
+                return null;
+            }
+
+            currentNode = currentNode.children[char];
+            i += 1;
+        }
+
+        return currentNode;
+    }
+
+    insert_inclass(word) {
+        let i = 0;
+        let currentNode = this.root;
+
+        while (i < word.length) {
+            const char = word[i];
+
+            if (!currentNode.children[char]) {
+                currentNode.children[char] = new TrieNode();
+            }
+
+            currentNode = currentNode.children[char];
+            i += 1;
+        }
+
+        currentNode.isEndOfWord = true;
+    }
+    collectAllWords_inclass(node, word = "", words = []) {
+        for (const [letter, letterNode] of Object.entries(node.children)) {
+            if (letterNode.isEndOfWord) {
+                words.push(word + letter);
+            }
+            
+            this.collectAllWords_inclass(letterNode, word + letter, words);
+        }
+
+        return words;
     }
 
     insert(word, popularity) {

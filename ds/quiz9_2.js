@@ -50,7 +50,7 @@ class ChapterWordList {
         let count = 0;
         let current = this.head;
         while (current) {
-            arr.push(current.val);
+            arr.push([current.val, current.count]);
             current = current.next;
             count++
         }
@@ -63,7 +63,7 @@ class ChapterWordList {
         let current = this.tail;
 
         while (current.val !== undefined) {
-            arr.push(current.val);
+            arr.push([current.val, current.count]);
             current = current.prev;
             count++
         }

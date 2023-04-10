@@ -37,6 +37,7 @@ class Vertex {
             return;
         }
         this.adjacentVertices.push(vertex);
+        // Remove the following statement to make Vertex represent a directed graph
         vertex.addAdjacentVertex(this);
     }
 }
@@ -73,10 +74,6 @@ function bfsTraverse(vertex) {
     }
 
     visitedVertices[vertex.value] = true;
-
-    
-
-
 
 }
 
@@ -140,15 +137,25 @@ let c = new Vertex("Cynthia");
 let d = new Vertex("Dianna");
 let e = new Vertex("Elise");
 let f = new Vertex("Fred");
+let gi = new Vertex("Gina");
+let h = new Vertex("Helen");
+let i = new Vertex("Irena");
 
 a.addAdjacentVertex(b);
-b.addAdjacentVertex(c);
+a.addAdjacentVertex(c);
 a.addAdjacentVertex(d);
-b.addAdjacentVertex(d);
-e.addAdjacentVertex(f);
-d.addAdjacentVertex(f);
+a.addAdjacentVertex(e);
 
-console.log(a, b, c, d, e, f);
+b.addAdjacentVertex(f);
+c.addAdjacentVertex(h);
+d.addAdjacentVertex(gi);
+
+f.addAdjacentVertex(h);
+gi.addAdjacentVertex(i);
+d.addAdjacentVertex(e);
+
+
+// console.log(a, b, c, d, e, f);
 
 console.log("Traversing a");
 dfsTraverse(a);

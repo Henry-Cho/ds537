@@ -11,7 +11,7 @@ class Vertex {
 
         this.adjacentVertices[vertex.value] = [vertex, weight];
         // Remove the following statement to make Vertex represent a directed graph
-        vertex.addAdjacentVertex(this, weight);
+        //vertex.addAdjacentVertex(this, weight);
     }
 }
 
@@ -75,7 +75,7 @@ f.addAdjacentVertex(h, 1);
 g.addAdjacentVertex(i, 8);
 d.addAdjacentVertex(e, 9);
 
-console.log(a);
+console.log(a, b, c, d, e, f);
 
 // count = 0;
 // console.log("Traversing a (depth-first)");

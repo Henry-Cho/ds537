@@ -5,6 +5,53 @@
 // O(V2 log V) -> If we do all the vertices
 // O(V log V)
 
+class WeightedGraph {
+    constructor() {
+        this.adjacencyList = {};
+    }
+
+    addVertex(name) {
+        if (!this.adjacencyList[name]) this.adjacencyList[name] = [];
+    }
+
+    addEdge(vertex1, vertex2, weight) {
+        this.adjacencyList[vertex1].push({ node: vertex2, weight});
+        this.adjacencyList[vertex2].push({ node: vertex1, weight});
+
+        console.log(this);
+    }
+
+    removeEdge(vertex1, vertex2) {
+        let idx1 = this.adjacencyList[vertex1].findIndex((v) => v === vertex2);
+        this.adjacencyList[vertex1].splice(idx1, 1);
+
+        let idx2 = this.adjacencyList[vertex2].findIndex((v) => v === vertex1);
+        this.adjacencyList[vertex2].splice(idx2, 1);
+    }
+
+    removeVertex(vertex1) {
+        let obj_list = Object.keys(this.adjacencyList);
+
+        obj_list.forEach((vertex2) => {
+            this.removeEdge(vertex1, vertex2);
+        })
+
+        delete this.adjacencyList[vertex1];
+
+        console.log(this);
+    }
+}
+
+let g = new WeightedGraph();
+g.addVertex("A");
+g.addVertex("B");
+g.addVertex("C");
+
+g.addEdge("A", "B", 5)
+g.addEdge("A", "C", 7)
+g.addEdge("B", "C", 6)
+
+
 class Vertex {
     constructor(value) {
         this.value = value;

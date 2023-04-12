@@ -37,7 +37,6 @@ class Vertex {
             return;
         }
         this.adjacentVertices.push(vertex);
-        // Remove the following statement to make Vertex represent a directed graph
         vertex.addAdjacentVertex(this);
     }
 }
@@ -155,7 +154,7 @@ gi.addAdjacentVertex(i);
 d.addAdjacentVertex(e);
 
 
-// console.log(a, b, c, d, e, f);
+console.log(a, b, c, d, e, f);
 
 console.log("Traversing a");
 dfsTraverse(a);

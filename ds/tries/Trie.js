@@ -79,15 +79,10 @@ class Trie {
     }
 
     collectTopKWords(node, word = "", words = [], k = 3) {
-        console.log("DHDIHDIHI")
         for (const [letter, letterNode] of Object.entries(node.children)) {
-            console.log(letter, " HHOHO ", letterNode)
             if (letterNode.isEndOfWord) {
-                console.log("HIHIHIHs")
                 words.push([word + letter, letterNode.frequency]);
                 words.sort((w1, w2) => w2[1] - w1[1]);
-
-                console.log("Words: ", words)
 
                 if (words.length > k) {
                     words.splice(words.length - 1, words.length - k)

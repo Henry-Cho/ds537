@@ -114,17 +114,6 @@ class BinarySearchTree {
 
     }
 
-    lift(node, nodeToDelete) {
-        if (node.left) {
-            node.left = this.lift(node.left, nodeToDelete);
-            return node;
-        }
-
-        nodeToDelete.value = node.value;
-
-        return node.right;
-    }
-
     // Delete a node with a given value from the BST
     delete(value) {
         const deleteNode = (node, value) => {
@@ -150,33 +139,8 @@ class BinarySearchTree {
         };
         this.root = deleteNode(this.root, value);
 
-        //this.rebalance(this.root);
-
         return this;
   }
-
-//   bfs() {
-//     // visited
-//     let data = [];
-//     let queue = [];
-//     let node = this.root;
-
-//     queue.push(node);
-
-//     while (queue.length > 0) {
-//         node = queue.shift();
-//         data.push(node.value);
-//         if (node.left) {
-//             queue.push(node.left);
-//         }
-
-//         if (node.right) {
-//             queue.push(node.right);
-//         }
-//     }
-
-//     return data;
-//   }
 
   bfs() {
     let queue = [this.root];
@@ -196,21 +160,6 @@ class BinarySearchTree {
 
     return data;
   }
-
-//   preorderLoop() {
-//     const data = [];
-//     const stack = [this.root];
-
-//     while (stack.length > 0) {
-//         const current = stack.pop();
-//         data.push(current.value);
-
-//         if (current.right) stack.push(current.right);
-//         if (current.left) stack.push(current.left);
-//     }
-
-//     return data;
-// }
 
   preorder() {
     let data = [];
@@ -275,50 +224,6 @@ class BinarySearchTree {
 
     return data;
   }
-
-rebalance(node) {
-    if (!node) return;
-    let leftHeight = this.height(node.left);
-    let rightHeight = this.height(node.right);
-    if (Math.abs(leftHeight - rightHeight) > 1) {
-        if (leftHeight > rightHeight) {
-            let leftLeftHeight = this.height(node.left.left);
-            let leftRightHeight = this.height(node.left.right);
-            if (leftRightHeight > leftLeftHeight) {
-                node.left = this.rotateLeft(node.left);
-            }
-            node = this.rotateRight(node);
-        } else {
-            let rightLeftHeight = this.height(node.right.left);
-            let rightRightHeight = this.height(node.right.right);
-            if (rightLeftHeight > rightRightHeight) {
-                node.right = this.rotateRight(node.right);
-            }
-            node = this.rotateLeft(node);
-        }
-    }
-    this.rebalance(node.left);
-    this.rebalance(node.right);
-}
-
-rotateLeft(node) {
-    let newRoot = node.right;
-    node.right = newRoot.left;
-    newRoot.left = node;
-    return newRoot;
-}
-
-rotateRight(node) {
-    let newRoot = node.left;
-    node.left = newRoot.right;
-    newRoot.right = node;
-    return newRoot;
-}
-
-height(node) {
-    if (!node) return -1;
-    return 1 + Math.max(this.height(node.left), this.height(node.right));
-}
 
 }
 

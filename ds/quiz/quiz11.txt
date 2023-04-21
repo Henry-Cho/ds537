@@ -1,0 +1,21 @@
+1. When the key 10 is inserted into the tree, it causes an imbalance because the height difference between the left and right subtrees of the node with key 25 increases, which led to having the root key(25)'s balance factor of 2.
+
+2. My step-by-step explanation is as follows:
+1) When a new key is inserted (in this case, 10), the _insert function is called recursively to find the appropriate position in the tree to insert the new node. After inserting the node, the height of each parent node is updated.
+2) After updating the height, the balance factor of the current node is calculated using the get_balance function. The balance factor is the difference between the height of the left subtree and the height of the right subtree.
+3) The balance_tree function is called with the current node and its balance factor. Inside this function, because the balance factore of the key 25 (root node) is 2 (bigger than 1), it signals that it has detected the imbalance and proceeded with balancing the tree.
+
+3. When the key 10 is inserted, it should be placed in the left subtree of the node with key 13 (as 10 is less than 13). After this insertion, the tree becomes unbalanced because the left subtree of the node with key 25 has a height of 4, while the right subtree has a height of 2. The difference in heights is 4 - 2 = 2, indicating an imbalance. The imbalance is a left-left (LL) case, as both the node with key 25 and its left child (node with key 5) are left-heavy. To resolve this imbalance, a right rotation was performed at the node with key 25.
+
+4. After detecting the imbalance, the Left Rotation is performed on the node with key 13. Then, the Right Rotation is performed on the node with key 25. Finally, the tree is balanced with the inserted key 10 in its correct position.
+
+5. The correct answer for this question would be the section of code within the balance_tree function:
+
+if balance_factor > 1:
+// Inside this condition because the balance factor is 2
+if self.get_balance(node.left) >= 0:
+return self.right_rotate(node)
+else:
+// This part is run to balance the tree (Left Rotation first, and then, Right Rotation)
+node.left = self.left_rotate(node.left)
+return self.right_rotate(node)

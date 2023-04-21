@@ -4,54 +4,6 @@
 // Big O 
 // O(V2 log V) -> If we do all the vertices
 // O(V log V)
-
-class WeightedGraph {
-    constructor() {
-        this.adjacencyList = {};
-    }
-
-    addVertex(name) {
-        if (!this.adjacencyList[name]) this.adjacencyList[name] = [];
-    }
-
-    addEdge(vertex1, vertex2, weight) {
-        this.adjacencyList[vertex1].push({ node: vertex2, weight});
-        this.adjacencyList[vertex2].push({ node: vertex1, weight});
-
-        console.log(this);
-    }
-
-    removeEdge(vertex1, vertex2) {
-        let idx1 = this.adjacencyList[vertex1].findIndex((v) => v === vertex2);
-        this.adjacencyList[vertex1].splice(idx1, 1);
-
-        let idx2 = this.adjacencyList[vertex2].findIndex((v) => v === vertex1);
-        this.adjacencyList[vertex2].splice(idx2, 1);
-    }
-
-    removeVertex(vertex1) {
-        let obj_list = Object.keys(this.adjacencyList);
-
-        obj_list.forEach((vertex2) => {
-            this.removeEdge(vertex1, vertex2);
-        })
-
-        delete this.adjacencyList[vertex1];
-
-        console.log(this);
-    }
-}
-
-let g = new WeightedGraph();
-g.addVertex("A");
-g.addVertex("B");
-g.addVertex("C");
-
-g.addEdge("A", "B", 5)
-g.addEdge("A", "C", 7)
-g.addEdge("B", "C", 6)
-
-
 class Vertex {
     constructor(value) {
         this.value = value;
@@ -121,7 +73,7 @@ function getAllVertices(vertex) {
             visitedVertices[currentVertex.value] = true;
 
             for (const adjacentVertex of currentVertex.adjacentVertices) {
-                if (!visitedVertices[adjacentVertex.value]) {
+                if (!visitedVertices[adjacentVertex.value] && !queue.includes(adjacentVertex)) {
                     queue.push(adjacentVertex);
                 }
             }
@@ -130,3 +82,43 @@ function getAllVertices(vertex) {
 
     return vertices;
 }
+
+function buildShortestPath(targetVertex) {
+    const path = [];
+    let currentVertex = targetVertex;
+
+    while (currentVertex !== null) {
+        path.unshift(currentVertex.value);
+        currentVertex = currentVertex.previousVertex;
+    }
+
+    return path;
+}
+
+
+const a = new Vertex('A');
+const b = new Vertex('B');
+const c = new Vertex('C');
+const d = new Vertex('D');
+const e = new Vertex('E');
+const f = new Vertex('F');
+
+a.addAdjacentVertex(b);
+a.addAdjacentVertex(c);
+b.addAdjacentVertex(d);
+c.addAdjacentVertex(d);
+c.addAdjacentVertex(e);
+d.addAdjacentVertex(e);
+d.addAdjacentVertex(f);
+e.addAdjacentVertex(f);
+
+dijkstraShortestPath(a);
+
+console.log(f.distance); // 3
+console.log(f.value); // 'D'
+console.log(f.previousVertex.value); // 'D'
+console.log(f.previousVertex.previousVertex.value); // 'B'
+console.log(f.previousVertex.previousVertex.previousVertex.value); // 'B'
+
+const shortestPath = buildShortestPath(f);
+console.log(shortestPath.join(' -> '));
